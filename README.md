@@ -1,27 +1,43 @@
 # HttpGetApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.7.
+This project was generated with Angular CLI version 14.2.7.  
 
-## Development server
+## Aim
+A simple web page. Performs access to a backend project springAPI. You can find this repository in my Github too.  
+This project includes files to perform a deployment on a small Kubernetes cluster with Minikube.  
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Versions used for the frontend application**
+Angular CLI (ng) : 14.2.7  
+Node: 18.12.0  
+Package Manager: npm 8.19.2  
+Angular: 14.2.8  
+Rxjs : 7.5.7  
+typescript : 4.7.4  
 
-## Code scaffolding
+**Minikube**
+minikube : v1.27.2    
+kubectl server version : v1.25.2  
+kubectl client version : v1.25.3  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### inspired from
+[link 1](https://www.tektutorialshub.com/angular/angular-http-get-example-using-httpclient/#comments)  
 
-## Build
+### Troubleshooting
+**CrossOrigins**  
+Add headers in responses with filters on the server and @CrossOrigin("*")  in the @RestController   
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+https://www.techiedelight.com/add-custom-header-to-all-responses-spring-boot/  
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### run
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.  
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+>>>>>>>>>>>>>>>
+angular get data from external file
+ https://medium.com/beingcoders/angular-basics-read-data-from-external-file-on-your-prod-build-78cc3ae46e68
+ https://robinraju.io/angular-loading-application-settings-from-external-file/
+
+a voir  : docker build angular app
