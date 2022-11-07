@@ -1,0 +1,4 @@
+FROM httpd:alpine3.16
+COPY ./dist/http-get-app/ /usr/local/apache2/htdocs/
+COPY ./httpd.conf.local /usr/local/apache2/conf/
+RUN mv /usr/local/apache2/conf/httpd.conf.local /usr/local/apache2/conf/httpd.conf

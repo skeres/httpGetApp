@@ -1,0 +1,32 @@
+---
+
+ # port       : Exposes the Kubernetes service on the specified port within the cluster.
+ #              Other pods within the cluster can communicate with this server on the specified port
+ # targetPort : Is the port on which the service will send requests to,
+ #              that your pod will be listening on. Your application in the container will
+ #              need to be listening on this port also.
+ # NodePort   : Exposes a service externally to the cluster by means of the target nodes IP address and the NodePort.
+ #              NodePort is the DEFAULT setting if the port field is not specified.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service         # The name to target to call the servie. Hence, in apache, redirect browser request to
+  labels:
+    tag : service
+spec:
+  selector:
+    app: my-front-end-app        # the service wil send request to Pods matching this key/balue pair
+    tier: frontend               # the service wil send request to Pods matching this key/balue pair
+  ports:
+  - name : app80
+    protocol: "TCP"
+    port: 8585                   # service listen on this port for incoming request in the cluster
+    targetPort: 80               # service send request on this port to all Pods with selector key/value is app: my-front-end-app and tier: frontend
+  - name : app8282
+    protocol: "TCP"
+    port: 8282                   # service listen on this port for incoming request in the cluster
+    targetPort: 8282             # service send request on this port to all Pods with selector key/value is app: my-front-end-app and tier: frontend
+  type: LoadBalancer
+...
+

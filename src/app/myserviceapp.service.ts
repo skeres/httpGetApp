@@ -11,7 +11,7 @@ import { AppConfig } from './app.config';
 export class MyServiceApp {
 
   baseURL: string | undefined;
-  //baseURL: string ='http://localhost:8282';
+  //baseURL: string ='http://localhost:8282/api';
 
 
   constructor(private http: HttpClient, private config: AppConfig) {

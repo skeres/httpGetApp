@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    tag : deployment
+spec:
+  selector:
+    matchLabels:
+      app: my-front-end-app             # must be the same here as selector service so that kubernetes can bind service to this deployment
+      tier: frontend                    # must be the same here as selector service so that kubernetes can bind service to this deployment
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-front-end-app           # must be the same here as selector service so that kubernetes can bind service to this deployment
+        tier: frontend
+    spec:
+      containers:
+        - name: apache-container
+          image: skeres95250/my-apache2:v1.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80          # The port that the container expose in the cluster pod
+            - containerPort: 8282        # The port that the container expose in the cluster pod
+...
