@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: frontend-deployment
   labels:
     tag : deployment
 spec:
@@ -18,10 +18,10 @@ spec:
         tier: frontend
     spec:
       containers:
-        - name: apache-container
-          image: skeres95250/my-apache2:v1.0
+        - name: nginx-container
+          image: skeres95250/my-nginx:v1.0
           imagePullPolicy: Always
           ports:
-            - containerPort: 80          # The port that the container expose in the cluster pod
-            - containerPort: 8282        # The port that the container expose in the cluster pod
+            - containerPort: 8080          # The port that the container expose in the cluster pod
+
 ...

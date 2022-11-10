@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+
+kind: Ingress               # beware : kind name starts with an uppercase
+
+metadata:
+  name: httpgetapp-ingress  # this will be the Ingress's name
+                            # consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric
+                            # character (e.g. 'example.com', regex used for validation
+                            # is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
+  namespace: default        # specify the namespaces place for this Ingress controller
+
+spec:
+  rules:
+    - host: www.httpgetapp.com         # choose what you want. It must be a valid domain name. And this the entry point to access your domain name
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend-service    # it's the service name. the ingress will forward incoming request from www.httpgetapp.com to front-end service
+                port:
+                  number: 8585            # port of the front-end service service who is listening to

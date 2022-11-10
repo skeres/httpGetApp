@@ -49,8 +49,8 @@ ServerRoot "/usr/local/apache2"
 # prevent Apache from glomming onto all bound IP addresses.
 #
 #Listen 12.34.56.78:80
+#Listen 8282
 Listen 80
-Listen 8282
 
 #
 # Dynamic Shared Object (DSO) Support
@@ -566,10 +566,10 @@ SSLRandomSeed connect builtin
 </IfModule>
 
 # >>> project : add lines below
-<VirtualHost *:80>
-ServerName ApacheAngular
-Header set sks-personal-virtualhost-header-no1 "header 80 bien set"
-</VirtualHost>
+#<VirtualHost *:80>
+#  ServerName ApacheAngular
+#  Header set sks-personal-virtualhost-header-no1 "header 80 bien set"
+#</VirtualHost>
 
 # >>> project : add lines below. You could also be more restrictive with origin, like "example1.com" or "localhost"
 # note : les hôtes virtuels n'héritent pas des configurations de réécriture. Ceci implique que
@@ -581,14 +581,11 @@ Header set sks-personal-virtualhost-header-no1 "header 80 bien set"
 #RewriteRule "^/api(.*)$" "http://172.17.0.1:8383/api$1" [L]
 #Header set Access-Control-Allow-Origin "*"
 
-<VirtualHost *:8282>
-ServerName ApacheRedirect
-
-Header set sks-personal-virtualhost-header-no2 "going through apache reverse-proxy"
-
-ProxyPreserveHost On
-ProxyRequests Off
-ProxyPass /api http://springboot-k8s-svc:8484/
-ProxyPassReverse / http://springboot-k8s-svc:8484/
-
+<VirtualHost *:80>
+  ServerName ApacheRedirect
+  Header set sks-personal-virtualhost-header-no2 "going through apache reverse-proxy"
+  ProxyPreserveHost On
+  ProxyRequests Off
+  ProxyPass /api http://springboot-k8s-svc/api/
+  ProxyPassReverse /api http://springboot-k8s-svc/api/
 </VirtualHost>

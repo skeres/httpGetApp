@@ -103,3 +103,24 @@ docker image push skeres95250/my-apache2:v1.0
 minikube addons enable metrics-server
 minikube tunnel : to enable service type loadbalancer
 minikube addons enable metrics-server
+minikube addons enable ingress : to enable Ingress in Minikube
+
+
+Nginx
+
+LOCALY
+ng build
+docker stop my_running_app && docker rm my_running_app
+docker build --tag skeres95250/my-nginx:v1.0  --file ./Dockerfile.nginx.local .
+docker run -dit --name my_running_app  --net=host skeres95250/my-nginx:v1.0 
+docker logs my_running_app 
+
+KUBERNETES
+ng build
+docker build --tag skeres95250/my-nginx:v1.0  --file ./Dockerfile.nginx.kubernetes .
+docker push skeres95250/my-nginx:v1.0
+kubectl apply -f frontend-service.yml
+kubectl apply -f frontend-deployment.yml
+kubectl delete -f frontend-deployment.yml 
+kubectl delete -f frontend-service.yml
+
