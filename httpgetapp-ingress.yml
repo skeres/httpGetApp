@@ -11,7 +11,7 @@ metadata:
 
 spec:
   rules:
-    - host: www.httpgetapp.com         # choose what you want. It must be a valid domain name. And this the entry point to access your domain name
+    - host: www.httpgetapp.com         # choose what you want. It must be a valid domain name. And this is the entry point to access your domain name
       http:
         paths:
           - path: /
