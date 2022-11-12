@@ -1,7 +1,7 @@
 ---
 
  # port       : Exposes the Kubernetes service on the specified port within the cluster.
- #              Other pods within the cluster can communicate with this server on the specified port
+ #              Other pods within the cluster can communicate with this service on the specified port
  # targetPort : Is the port on which the service will send requests to,
  #              that your pod will be listening on. Your application in the container will
  #              need to be listening on this port also.
@@ -26,10 +26,6 @@ spec:
     targetPort: 8080             # service send request on this port to all Pods with selector key/value is app: my-front-end-app and tier: frontend
     nodePort : 30000             # service will be accessible from outside the cluster by this port number ( just for test, do not use in Production )
                                  # nodePort value must be between 30000 and 32767.
-  #- name : app8282
-  #  protocol: "TCP"
-  #  port: 8282                   # service listen on this port for incoming request in the cluster
-  #  targetPort: 8282             # service send request on this port to all Pods with selector key/value is app: my-front-end-app and tier: frontend
 
 ...
 

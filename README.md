@@ -108,14 +108,14 @@ minikube addons enable ingress : to enable Ingress in Minikube
 
 Nginx
 
-LOCALY
+### LOCALY
 ng build
 docker stop my_running_app && docker rm my_running_app
 docker build --tag skeres95250/my-nginx:v1.0  --file ./Dockerfile.nginx.local .
 docker run -dit --name my_running_app  --net=host skeres95250/my-nginx:v1.0 
 docker logs my_running_app 
 
-KUBERNETES
+### KUBERNETES
 ng build
 docker build --tag skeres95250/my-nginx:v1.0  --file ./Dockerfile.nginx.kubernetes .
 docker push skeres95250/my-nginx:v1.0
@@ -124,3 +124,15 @@ kubectl apply -f frontend-deployment.yml
 kubectl delete -f frontend-deployment.yml 
 kubectl delete -f frontend-service.yml
 
+### >>> helm for kubernetes
+helm create frontend : create tree of helm files
+helm template ./helm/frontend : show yml files that will be generated
+helm install my-helm-frontend --debug --dry-run ./helm/frontend : to simulate a deployment
+helm install my-helm-frontend ./helm/frontend : to remove deployment from cluster
+helm uninstall my-helm-frontend
+
+For debugging, create a busybox POD and ssh into it
+kubectl run -i --tty --rm debug --image=busybox --restart=Never
+kubectl exec -it debug -- sh
+inside the pod : wget -S -O - http://springboot-k8s-svc:8484/api/listeEtudiants
+kubectl delete -n default pod debug
