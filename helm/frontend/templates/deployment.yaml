@@ -39,25 +39,10 @@ spec:
             - name: http
               containerPort: {{ .Values.service.targetPort }}
               protocol: TCP
-          #livenessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          #readinessProbe:
-          #  httpGet:
-          #    path: /
-          #    port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      initContainers:
+        - name: init-wait-backend
+          image: skeres95250/my-busybox:v0.0
+          command: ['sh', '-c', 'until nslookup springboot-k8s-svc; do echo "waiting for service pringboot-k8s-svc"; sleep 10; done; echo "service pringboot-k8s-svc is ready" ']
+
+
+

@@ -132,7 +132,14 @@ helm install my-helm-frontend ./helm/frontend : to remove deployment from cluste
 helm uninstall my-helm-frontend
 
 For debugging, create a busybox POD and ssh into it
-kubectl run -i --tty --rm debug --image=busybox --restart=Never
+kubectl run -i --tty debug --image=busybox --restart=Never -- sh
 kubectl exec -it debug -- sh
-inside the pod : wget -S -O - http://springboot-k8s-svc:8484/api/listeEtudiants
+inside the pod : execute any command you want
 kubectl delete -n default pod debug
+
+
+### INITcontainers
+See 
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/
+
