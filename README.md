@@ -128,7 +128,7 @@ kubectl delete -f frontend-service.yml
 helm create frontend : create tree of helm files
 helm template ./helm/frontend : show yml files that will be generated
 helm install my-helm-frontend --debug --dry-run ./helm/frontend : to simulate a deployment
-helm install my-helm-frontend ./helm/frontend : to remove deployment from cluster
+helm install my-helm-frontend ./helm/frontend : to install deployment from cluster
 helm uninstall my-helm-frontend
 
 For debugging, create a busybox POD and ssh into it
@@ -143,3 +143,10 @@ See
 https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
 https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/
 
+
+
+### Azure
+nginx files locations : 
+/var/log/nginx                   # cat error.log2
+/var/log/nginx                   # cat access.log2
+/etc/nginx/conf.d/nginx.conf     # configuration
